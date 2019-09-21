@@ -44,8 +44,8 @@ public class FoodTruckApp {
 						
 		for(int i = 0; i < ft.length; i++) {
 			ft[i] = new FoodTruck();
-			System.out.println("\n**Create " + (ft.length - i) + "More Food Trucks**");
-			System.out.print("Enter Truck #" + (i + 1) + "'s Info...");
+			System.out.println("\n**Create " + (ft.length - i) + " More Food Trucks**");
+			System.out.print("Please Enter Truck #" + (i + 1) + "'s Info...");
 			System.out.print("\nEnter Truck Name/QUIT: ");
 			nameQuit = input.nextLine();
 			
@@ -140,7 +140,7 @@ public class FoodTruckApp {
 		for(int i = 0; i < ft.length; i++) {
 			if(ft[i].getUserRating() >= maxRating) {
 				maxRating = ft[i].getUserRating();
-				hRFTArray[i] = ft[i];
+				hRFTArray[count] = ft[i];
 				count++;
 			}
 		}
