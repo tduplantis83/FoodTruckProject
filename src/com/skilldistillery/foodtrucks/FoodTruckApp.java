@@ -7,7 +7,7 @@ public class FoodTruckApp {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		FoodTruckApp fta = new FoodTruckApp();
-
+		
 		fta.run(input, fta);
 
 		// done - close scanner & exit
@@ -40,19 +40,21 @@ public class FoodTruckApp {
 		String nameQuit = "";
 		System.out.print("How many food trucks would you like to enter: ");
 		ft = new FoodTruck[input.nextInt()];
-		
+		input.nextLine();
+						
 		for(int i = 0; i < ft.length; i++) {
-			System.out.println("**Create " + ft.length + " Food Trucks**");
-			System.out.println("Food Truck #" + (i + 1) + "'s Info...");
-			System.out.print("Enter Name or QUIT: ");
+			ft[i] = new FoodTruck();
+			System.out.println("\n**Create " + (ft.length - i) + "More Food Trucks**");
+			System.out.print("Enter Truck #" + (i + 1) + "'s Info...");
+			System.out.print("\nEnter Truck Name/QUIT: ");
 			nameQuit = input.nextLine();
 			
 			//if quit was entered as the Truck Name
 			//resize the array and stop entering info
 			if(nameQuit.equalsIgnoreCase("Quit")) {
-				FoodTruck[] shortenedFTArr = new FoodTruck[ i + 1];
-				for(int j = 0; j < i; j++) {
-					shortenedFTArr[i] = ft[i];
+				FoodTruck[] shortenedFTArr = new FoodTruck[i];
+				for(int j = 0; j < shortenedFTArr.length; j++) {
+					shortenedFTArr[j] = ft[j];
 				}
 				return shortenedFTArr;
 			}
@@ -62,6 +64,7 @@ public class FoodTruckApp {
 				ft[i].setFoodType(input.nextLine());
 				System.out.print("Enter User Rating: ");
 				ft[i].setUserRating(input.nextDouble());
+				input.nextLine();
 			}
 		}
 		
@@ -79,22 +82,23 @@ public class FoodTruckApp {
 	}
 	
 	private boolean menuSelection(Scanner input, FoodTruckApp fta, FoodTruck[] ft) {
-		int choice = input.nextInt();
+		char choice = input.next().charAt(0);
 		
 		switch(choice) {
-		case 1: 
+		case '1': 
 			// list food trucks method
-			fta.listTrucks(fta, ft);
+			fta.listTrucks(ft);
 			break;
-		case 2:
+		case '2':
 			// get average user rating for trucks method
-			fta.getAvgRating(fta, ft);			
+			fta.getAvgRating(ft);			
 			break;
-		case 3:
+		case '3':
 			// get highest rated food truck method
-			fta.getHighestRated(fta, ft);
+			fta.getHighestRated(ft);
 			break;
-		case 4:
+		case '4':
+			System.out.println("Happy Food-Trucking! Goodbye!");
 			return false;
 		default:
 			System.err.println("\nERROR - Invalid Menu Selection. Try again.\n");
@@ -107,16 +111,51 @@ public class FoodTruckApp {
 
 
 
-	private void listTrucks(FoodTruckApp fta, FoodTruck[] ft) {
+	private void listTrucks(FoodTruck[] ft) {
+		//print out trucks
+		for(int i = 0; i < ft.length; i++) {
+			System.out.println(ft[i].toString());
+		}
+	}
+
+	private void getAvgRating(FoodTruck[] ft) {
+		//get average of all truck ratings
+		int count = ft.length;
+		double sum = 0;
+		
+		for(int i = 0; i < ft.length; i++) {
+			sum += ft[i].getUserRating();
+		}
+		
+		System.out.println("Average Food Truck Rating: " + (double)sum / count);
 		
 	}
 
-	private void getAvgRating(FoodTruckApp fta, FoodTruck[] ft) {
+	private void getHighestRated(FoodTruck[] ft) {
+		//find highest rated truck
+		double maxRating = ft[0].getUserRating();
+		FoodTruck[] hRFTArray = new FoodTruck[ft.length];
+		int count = 0;
 		
-	}
-
-	private void getHighestRated(FoodTruckApp fta, FoodTruck[] ft) {
+		for(int i = 0; i < ft.length; i++) {
+			if(ft[i].getUserRating() >= maxRating) {
+				maxRating = ft[i].getUserRating();
+				hRFTArray[i] = ft[i];
+				count++;
+			}
+		}
 		
+		//copy hRFTArray to new array to trim to right size
+		FoodTruck[] highestRated = new FoodTruck[count];
+		for(int i = 0; i < highestRated.length; i++) {
+			highestRated[i] = hRFTArray[i];
+		}
+		
+		
+		System.out.println("The Highest Rated Food Truck(s):");
+		for(int i = 0; i < highestRated.length; i++) {
+			System.out.println(highestRated[i].toString());
+		}
 	}
 
 }

@@ -3,24 +3,27 @@ package com.skilldistillery.foodtrucks;
 public class FoodTruck {
 	//for a count of food trucks - to be used for TruckID
 	private static int truckCount = 0;
-	private int truckID;
-	private String name;
-	private String foodType;
-	private double userRating;
+	private int truckID = 0;
+	private String name = null;
+	private String foodType = null;
+	private double userRating = 0.0;
 	
 	public FoodTruck() {
-		
+		setTruckID();
 	}
 	
 	public FoodTruck(String name, String foodType, double userRating) {
-		//increment count of trucks
-		truckCount++;
-		
 		//assign count of trucks to truck id
-		this.truckID = truckCount;
+		setTruckID();
 		this.name = name;
 		this.foodType = foodType;
 		this.userRating = userRating;
+	}
+	
+	private void setTruckID() {
+		//increment count of trucks
+		truckCount++;
+		this.truckID = truckCount;
 	}
 
 	public int getTruckID() {
@@ -62,7 +65,6 @@ public class FoodTruck {
 		builder.append(foodType);
 		builder.append(", User Rating: ");
 		builder.append(userRating);
-		builder.append("]");
 		return builder.toString();
 	}
 	
