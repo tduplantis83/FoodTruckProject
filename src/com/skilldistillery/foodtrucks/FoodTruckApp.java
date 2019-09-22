@@ -16,7 +16,7 @@ public class FoodTruckApp {
 
 	}
 
-	private void run(Scanner input, FoodTruckApp fta) {
+	public void run(Scanner input, FoodTruckApp fta) {
 		FoodTruck[] trucks = new FoodTruck[100];
 		boolean loop = false;
 
@@ -35,7 +35,7 @@ public class FoodTruckApp {
 
 	}
 
-	private FoodTruck[] enterTruckInfo(Scanner input) {
+	public FoodTruck[] enterTruckInfo(Scanner input) {
 		FoodTruck[] ft;
 		String nameQuit = "";
 		System.out.print("How many food trucks would you like to enter: ");
@@ -72,7 +72,7 @@ public class FoodTruckApp {
 		
 	}
 	
-	private void printMenu() {
+	public void printMenu() {
 		System.out.println("\n********Food Truck Menu********");
 		System.out.println(" Please Make a Selection (1-4) ");
 		System.out.println("1. List existing Food Trucks");
@@ -81,7 +81,7 @@ public class FoodTruckApp {
 		System.out.println("4. Quit the App");
 	}
 	
-	private boolean menuSelection(Scanner input, FoodTruckApp fta, FoodTruck[] ft) {
+	public boolean menuSelection(Scanner input, FoodTruckApp fta, FoodTruck[] ft) {
 		char choice = input.next().charAt(0);
 		
 		switch(choice) {
@@ -111,14 +111,14 @@ public class FoodTruckApp {
 
 
 
-	private void listTrucks(FoodTruck[] ft) {
+	public void listTrucks(FoodTruck[] ft) {
 		//print out trucks
 		for(int i = 0; i < ft.length; i++) {
 			System.out.println(ft[i].toString());
 		}
 	}
 
-	private void getAvgRating(FoodTruck[] ft) {
+	public void getAvgRating(FoodTruck[] ft) {
 		//get average of all truck ratings
 		int count = ft.length;
 		double sum = 0;
@@ -127,11 +127,11 @@ public class FoodTruckApp {
 			sum += ft[i].getUserRating();
 		}
 		
-		System.out.println("Average Food Truck Rating: " + (double)sum / count);
+		System.out.printf("\nAverage Food Truck Rating: %.2f\n", (double)sum / count);
 		
 	}
 
-	private void getHighestRated(FoodTruck[] ft) {
+	public void getHighestRated(FoodTruck[] ft) {
 		//find highest rated truck
 		double maxRating = ft[0].getUserRating();
 		FoodTruck[] hRFTArray = new FoodTruck[ft.length];
@@ -152,7 +152,7 @@ public class FoodTruckApp {
 		}
 		
 		
-		System.out.println("The Highest Rated Food Truck(s):");
+		System.out.println("\nThe Highest Rated Food Truck(s):");
 		for(int i = 0; i < highestRated.length; i++) {
 			System.out.println(highestRated[i].toString());
 		}
