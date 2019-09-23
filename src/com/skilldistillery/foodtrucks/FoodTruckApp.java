@@ -133,28 +133,29 @@ public class FoodTruckApp {
 
 	public void getHighestRated(FoodTruck[] ft) {
 		//find highest rated truck
-		double maxRating = ft[0].getUserRating();
+		double maxRating = 0;
 		FoodTruck[] hRFTArray = new FoodTruck[ft.length];
 		int count = 0;
 		
+		//sets maxRating to the highest of the fist two indexes of ft
 		for(int i = 0; i < ft.length; i++) {
-			if(ft[i].getUserRating() >= maxRating) {
+			if(maxRating <= ft[i].getUserRating()) {
 				maxRating = ft[i].getUserRating();
+			}
+		}
+		
+		for(int i = 0; i < ft.length; i++) {
+			if(maxRating <= ft[i].getUserRating()) {
 				hRFTArray[count] = ft[i];
 				count++;
 			}
 		}
-		
-		//copy hRFTArray to new array to trim to right size
-		FoodTruck[] highestRated = new FoodTruck[count];
-		for(int i = 0; i < highestRated.length; i++) {
-			highestRated[i] = hRFTArray[i];
-		}
-		
-		
+
 		System.out.println("\nThe Highest Rated Food Truck(s):");
-		for(int i = 0; i < highestRated.length; i++) {
-			System.out.println(highestRated[i].toString());
+		for(int i = 0; i < hRFTArray.length; i++) {
+			if(hRFTArray[i] != null) {
+				System.out.println(hRFTArray[i].toString());
+			}
 		}
 	}
 
