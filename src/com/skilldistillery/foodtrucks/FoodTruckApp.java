@@ -137,13 +137,14 @@ public class FoodTruckApp {
 		FoodTruck[] hRFTArray = new FoodTruck[ft.length];
 		int count = 0;
 		
-		//sets maxRating to the highest of the fist two indexes of ft
+		//sets maxRating to the highest rating of all food trucks
 		for(int i = 0; i < ft.length; i++) {
 			if(maxRating <= ft[i].getUserRating()) {
 				maxRating = ft[i].getUserRating();
 			}
 		}
 		
+		//creates an array of ALL the higest rated trucks (with same rating)
 		for(int i = 0; i < ft.length; i++) {
 			if(maxRating <= ft[i].getUserRating()) {
 				hRFTArray[count] = ft[i];
@@ -151,6 +152,7 @@ public class FoodTruckApp {
 			}
 		}
 
+		//prints out the highest rated trucks
 		System.out.println("\nThe Highest Rated Food Truck(s):");
 		for(int i = 0; i < hRFTArray.length; i++) {
 			if(hRFTArray[i] != null) {
