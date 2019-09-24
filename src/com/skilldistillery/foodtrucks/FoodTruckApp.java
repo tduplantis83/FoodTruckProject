@@ -26,11 +26,11 @@ public class FoodTruckApp {
 
 		do {
 			// print Menu method
-			fta.printMenu();
+			printMenu();
 
 			// take user input for Menu
 			// call appropriate method from menuSelection() method
-			loop = fta.menuSelection(input, fta, trucks);
+			loop = menuSelection(input, trucks);
 		} while (loop);
 
 	}
@@ -81,21 +81,21 @@ public class FoodTruckApp {
 		System.out.println("4. Quit the App");
 	}
 	
-	public boolean menuSelection(Scanner input, FoodTruckApp fta, FoodTruck[] ft) {
+	public boolean menuSelection(Scanner input, FoodTruck[] ft) {
 		char choice = input.next().charAt(0);
 		
 		switch(choice) {
 		case '1': 
 			// list food trucks method
-			fta.listTrucks(ft);
+			listTrucks(ft);
 			break;
 		case '2':
 			// get average user rating for trucks method
-			fta.getAvgRating(ft);			
+			getAvgRating(ft);			
 			break;
 		case '3':
 			// get highest rated food truck method
-			fta.getHighestRated(ft);
+			getHighestRated(ft);
 			break;
 		case '4':
 			System.out.println("Happy Food-Trucking! Goodbye!");
@@ -144,7 +144,7 @@ public class FoodTruckApp {
 			}
 		}
 		
-		//creates an array of ALL the higest rated trucks (with same rating)
+		//creates an array of ALL the highest rated trucks (with same rating)
 		for(int i = 0; i < ft.length; i++) {
 			if(maxRating <= ft[i].getUserRating()) {
 				hRFTArray[count] = ft[i];
